@@ -148,7 +148,7 @@ module Jekyll
         content.gsub!(/<#{tag}/i, "$$" + tag)
         content.gsub!(/<\/#{tag}/i, "||" + tag)
       end
-      content = %x[echo '#{content.gsub("'", "''")}' | html2text]
+      content = %x[echo '#{content.gsub("'", "''")}' | tidy -i -utf8 --show-body-only true]
       preserve.each do |tag|
         content.gsub!("$$" + tag, "<" + tag)
         content.gsub!("||" + tag, "</" + tag)
