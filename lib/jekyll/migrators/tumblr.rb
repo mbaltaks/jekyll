@@ -51,6 +51,7 @@ module Jekyll
           content = post["regular-body"]
         when "link"
           title = post["link-text"] || post["link-url"]
+          link = post["link-url"]
           content = "<a href=\"#{post["link-url"]}\">#{title}</a>"
           unless post["link-description"].nil?
             content << "<br/>" + post["link-description"]
@@ -102,6 +103,7 @@ module Jekyll
         :header => {
           "layout" => "post",
           "title" => title,
+          "link" => link,
           "tags" => post["tags"],
         },
         :content => content,
